@@ -7,30 +7,44 @@ import java.util.*;
 
 public class CollectionTestSuite {
 
-    OddNumbersExterminator exterminator = new OddNumbersExterminator();
-    ArrayList numbers = new ArrayList<Integer>();
-    int size = numbers.size();
-
 
     @Test
-        @Before
         public void testOddNumbersExterminatorEmptyList() {
 
-            size = 0;
-            exterminator.exterminate(CollectionTestSuite.this.numbers);
+        //Given
+        OddNumbersExterminator exterminator = new OddNumbersExterminator();
+        ArrayList<Integer> numbers = new ArrayList<>();
+        ArrayList<Integer> emptyList = exterminator.getOdd();
+
+        //When
+        ArrayList<Integer> oddsExterminated = exterminator.exterminate(numbers);
+
+        //Then
+        Assert.assertEquals(emptyList, oddsExterminated);
+
 
         }
 
 
-        @After
+     @Test
         public void testOddNumbersExterminatorNormalList(){
 
-                Random random = new Random();
-            for(int i=0; i < 15; i++){
-                numbers.add(random.nextInt(16));
+         //Given
+         OddNumbersExterminator exterminator = new OddNumbersExterminator();
+         ArrayList<Integer> numbers = new ArrayList<>();
+         ArrayList<Integer> even = exterminator.getEven();
+         for (int i = 0; i <5; i++){
+                numbers.add(i);
             }
-            exterminator.exterminate(CollectionTestSuite.this.numbers);
-        }
+
+         //When
+         ArrayList<Integer> oddsExterminated = exterminator.exterminate(numbers);
+
+         //Then
+         Assert.assertEquals(even, oddsExterminated);
+
+
+     }
 
 
 }
